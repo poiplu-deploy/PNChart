@@ -16,7 +16,6 @@
 @property (nonatomic) NSArray *endPercentages;
 
 @property (nonatomic) CGFloat outerCircleRadius;
-@property (nonatomic) CGFloat innerCircleRadius;
 
 @property (nonatomic) UIView         *contentView;
 @property (nonatomic) CAShapeLayer   *pieLayer;
