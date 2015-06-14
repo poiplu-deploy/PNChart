@@ -40,6 +40,9 @@
 
 @property (nonatomic, weak) id<PNChartDelegate> delegate;
 
+/** Default is FrameWidth / 6 **/
+@property (nonatomic) CGFloat innerCircleRadius;
+
 - (void)strokeChart;
 
 @end
