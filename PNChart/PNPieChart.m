@@ -120,6 +120,40 @@
     }
 }
 
+- (void)strokeChart:(BOOL)animated{
+    [self loadDefault];
+    
+    PNPieChartDataItem *currentItem;
+    for (int i = 0; i < _items.count; i++) {
+        currentItem = [self dataItemForIndex:i];
+        
+        
+        CGFloat startPercnetage = [self startPercentageForItemAtIndex:i];
+        CGFloat endPercentage   = [self endPercentageForItemAtIndex:i];
+        
+        CGFloat radius = _innerCircleRadius + (_outerCircleRadius - _innerCircleRadius) / 2;
+        CGFloat borderWidth = _outerCircleRadius - _innerCircleRadius;
+        
+        CAShapeLayer *currentPieLayer =	[self newCircleLayerWithRadius:radius
+                                                           borderWidth:borderWidth
+                                                             fillColor:[UIColor clearColor]
+                                                           borderColor:currentItem.color
+                                                       startPercentage:startPercnetage
+                                                         endPercentage:endPercentage];
+        [_pieLayer addSublayer:currentPieLayer];
+    }
+    
+    if (animated) {
+        [self maskChart];
+    }
+    
+    for (int i = 0; i < _items.count; i++) {
+        UILabel *descriptionLabel =  [self descriptionLabelForItemAtIndex:i];
+        [_contentView addSubview:descriptionLabel];
+        [_descriptionLabels addObject:descriptionLabel];
+    }
+}
+
 - (UILabel *)descriptionLabelForItemAtIndex:(NSUInteger)index{
     PNPieChartDataItem *currentDataItem = [self dataItemForIndex:index];
     CGFloat distance = _innerCircleRadius + (_outerCircleRadius - _innerCircleRadius) / 2;
