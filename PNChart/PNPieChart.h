@@ -45,4 +45,6 @@
 
 - (void)strokeChart;
 
+- (void)strokeChart:(BOOL)animated;
+
 @end
